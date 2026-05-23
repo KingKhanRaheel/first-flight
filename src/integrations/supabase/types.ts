@@ -14,7 +14,255 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      careers: {
+        Row: {
+          created_at: string
+          degree_paths: string[] | null
+          description: string | null
+          difficulty: string | null
+          future_scope: string | null
+          id: string
+          name: string
+          salary_range: string | null
+          skills: string[] | null
+          streams: string[] | null
+          tags: string[] | null
+          why_fit_template: string | null
+        }
+        Insert: {
+          created_at?: string
+          degree_paths?: string[] | null
+          description?: string | null
+          difficulty?: string | null
+          future_scope?: string | null
+          id?: string
+          name: string
+          salary_range?: string | null
+          skills?: string[] | null
+          streams?: string[] | null
+          tags?: string[] | null
+          why_fit_template?: string | null
+        }
+        Update: {
+          created_at?: string
+          degree_paths?: string[] | null
+          description?: string | null
+          difficulty?: string | null
+          future_scope?: string | null
+          id?: string
+          name?: string
+          salary_range?: string | null
+          skills?: string[] | null
+          streams?: string[] | null
+          tags?: string[] | null
+          why_fit_template?: string | null
+        }
+        Relationships: []
+      }
+      colleges: {
+        Row: {
+          city: string | null
+          courses: string[] | null
+          created_at: string
+          cutoff_min: number | null
+          fees_max: number | null
+          fees_min: number | null
+          id: string
+          name: string
+          notes: string | null
+          state: string | null
+          streams: string[] | null
+          tags: string[] | null
+          type: string | null
+        }
+        Insert: {
+          city?: string | null
+          courses?: string[] | null
+          created_at?: string
+          cutoff_min?: number | null
+          fees_max?: number | null
+          fees_min?: number | null
+          id?: string
+          name: string
+          notes?: string | null
+          state?: string | null
+          streams?: string[] | null
+          tags?: string[] | null
+          type?: string | null
+        }
+        Update: {
+          city?: string | null
+          courses?: string[] | null
+          created_at?: string
+          cutoff_min?: number | null
+          fees_max?: number | null
+          fees_min?: number | null
+          id?: string
+          name?: string
+          notes?: string | null
+          state?: string | null
+          streams?: string[] | null
+          tags?: string[] | null
+          type?: string | null
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          budget_max: number | null
+          budget_min: number | null
+          career_interests: string[] | null
+          class: string | null
+          college_type: string | null
+          completed_onboarding: boolean
+          created_at: string
+          entrance_exams: Json | null
+          extracurriculars: string | null
+          gender: string | null
+          id: string
+          income_bracket: string | null
+          marks_percent: number | null
+          minority_category: string | null
+          name: string | null
+          preferred_location: string | null
+          skills: string[] | null
+          social_category: string | null
+          state: string | null
+          stream: string | null
+          subjects: string[] | null
+          updated_at: string
+        }
+        Insert: {
+          budget_max?: number | null
+          budget_min?: number | null
+          career_interests?: string[] | null
+          class?: string | null
+          college_type?: string | null
+          completed_onboarding?: boolean
+          created_at?: string
+          entrance_exams?: Json | null
+          extracurriculars?: string | null
+          gender?: string | null
+          id: string
+          income_bracket?: string | null
+          marks_percent?: number | null
+          minority_category?: string | null
+          name?: string | null
+          preferred_location?: string | null
+          skills?: string[] | null
+          social_category?: string | null
+          state?: string | null
+          stream?: string | null
+          subjects?: string[] | null
+          updated_at?: string
+        }
+        Update: {
+          budget_max?: number | null
+          budget_min?: number | null
+          career_interests?: string[] | null
+          class?: string | null
+          college_type?: string | null
+          completed_onboarding?: boolean
+          created_at?: string
+          entrance_exams?: Json | null
+          extracurriculars?: string | null
+          gender?: string | null
+          id?: string
+          income_bracket?: string | null
+          marks_percent?: number | null
+          minority_category?: string | null
+          name?: string | null
+          preferred_location?: string | null
+          skills?: string[] | null
+          social_category?: string | null
+          state?: string | null
+          stream?: string | null
+          subjects?: string[] | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      recommendations: {
+        Row: {
+          careers: Json
+          colleges: Json
+          generated_at: string
+          id: string
+          scholarships: Json
+          user_id: string
+        }
+        Insert: {
+          careers?: Json
+          colleges?: Json
+          generated_at?: string
+          id?: string
+          scholarships?: Json
+          user_id: string
+        }
+        Update: {
+          careers?: Json
+          colleges?: Json
+          generated_at?: string
+          id?: string
+          scholarships?: Json
+          user_id?: string
+        }
+        Relationships: []
+      }
+      scholarships: {
+        Row: {
+          amount: string | null
+          created_at: string
+          deadline: string | null
+          description: string | null
+          eligibility_text: string | null
+          gender: string | null
+          id: string
+          income_bracket: string | null
+          link: string | null
+          min_marks: number | null
+          minority_category: string | null
+          name: string
+          state: string | null
+          stream: string | null
+          tags: string[] | null
+        }
+        Insert: {
+          amount?: string | null
+          created_at?: string
+          deadline?: string | null
+          description?: string | null
+          eligibility_text?: string | null
+          gender?: string | null
+          id?: string
+          income_bracket?: string | null
+          link?: string | null
+          min_marks?: number | null
+          minority_category?: string | null
+          name: string
+          state?: string | null
+          stream?: string | null
+          tags?: string[] | null
+        }
+        Update: {
+          amount?: string | null
+          created_at?: string
+          deadline?: string | null
+          description?: string | null
+          eligibility_text?: string | null
+          gender?: string | null
+          id?: string
+          income_bracket?: string | null
+          link?: string | null
+          min_marks?: number | null
+          minority_category?: string | null
+          name?: string
+          state?: string | null
+          stream?: string | null
+          tags?: string[] | null
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
