@@ -31,6 +31,12 @@ export function SiteHeader() {
               >
                 Dashboard
               </Link>
+              <Link
+                to="/settings"
+                className="rounded-lg px-3 py-1.5 text-sm font-medium hover:bg-accent"
+              >
+                Settings
+              </Link>
               <Button variant="ghost" size="sm" onClick={handleSignOut}>
                 <LogOut className="mr-1.5 h-4 w-4" /> Sign out
               </Button>
