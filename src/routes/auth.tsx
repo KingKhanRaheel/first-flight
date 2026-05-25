@@ -38,7 +38,7 @@ function AuthPage() {
     setBusy(true);
     try {
       if (isSignup) {
-        const { error } = await supabase.auth.signUp({
+        const { data, error } = await supabase.auth.signUp({
           email,
           password,
           options: {
@@ -47,6 +47,11 @@ function AuthPage() {
           },
         });
         if (error) throw error;
+        if (!data.session) {
+          toast.success("Account created! Please check your email to confirm, then sign in.");
+          setIsSignup(false);
+          return;
+        }
         toast.success("Account created! Let's set up your profile.");
         navigate({ to: "/onboarding" });
       } else {
