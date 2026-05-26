@@ -17,10 +17,10 @@ export function SiteHeader() {
     <header className="sticky top-0 z-40 w-full border-b border-border/60 bg-background/80 backdrop-blur">
       <div className="mx-auto flex h-14 max-w-6xl items-center justify-between px-4">
         <Link to="/" className="flex items-center gap-2 font-display text-lg font-bold">
-          <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-primary text-primary-foreground">
+          <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-gradient-brand text-white shadow-soft">
             <Sparkles className="h-4 w-4" />
           </span>
-          After12<span className="text-primary">.ai</span>
+          After12<span className="text-gradient-brand">.ai</span>
         </Link>
         <nav className="flex items-center gap-2">
           {user ? (
@@ -52,7 +52,7 @@ export function SiteHeader() {
               <Link
                 to="/auth"
                 search={{ mode: "signup" }}
-                className="rounded-lg bg-primary px-3 py-1.5 text-sm font-medium text-primary-foreground hover:opacity-90"
+                className="rounded-xl bg-gradient-brand px-4 py-1.5 text-sm font-semibold text-white shadow-soft transition hover:opacity-95 hover:-translate-y-0.5"
               >
                 Get started
               </Link>

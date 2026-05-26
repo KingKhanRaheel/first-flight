@@ -13,12 +13,12 @@ function Landing() {
 
       {/* HERO */}
       <section className="mx-auto max-w-6xl px-4 pt-16 pb-20 text-center md:pt-24 md:pb-28">
-        <span className="inline-flex items-center gap-1.5 rounded-full bg-primary-soft px-3 py-1 text-xs font-semibold text-accent-foreground">
-          <Sparkles className="h-3.5 w-3.5" /> Built for Indian Class 11–12 students
+        <span className="inline-flex items-center gap-1.5 rounded-full border border-border/60 bg-white/70 px-3 py-1 text-xs font-semibold text-accent-foreground shadow-soft backdrop-blur">
+          <Sparkles className="h-3.5 w-3.5 text-primary animate-float" /> Built for Indian Class 11–12 students
         </span>
         <h1 className="mx-auto mt-6 max-w-3xl text-4xl font-bold tracking-tight md:text-6xl">
           Discover your career, college &amp;{" "}
-          <span className="text-primary">scholarship</span> path after 12th.
+          <span className="text-gradient-brand">scholarship</span> path after 12th.
         </h1>
         <p className="mx-auto mt-5 max-w-xl text-base text-muted-foreground md:text-lg">
           AI-powered guidance for students who feel overwhelmed about the future. Tell us
@@ -28,13 +28,13 @@ function Landing() {
           <Link
             to="/auth"
             search={{ mode: "signup" }}
-            className="inline-flex items-center gap-2 rounded-xl bg-primary px-6 py-3 text-base font-semibold text-primary-foreground shadow-soft transition hover:opacity-90"
+            className="inline-flex items-center gap-2 rounded-xl bg-gradient-brand px-6 py-3 text-base font-semibold text-white shadow-soft transition hover:-translate-y-0.5 hover:shadow-glow"
           >
             Get my roadmap <ArrowRight className="h-4 w-4" />
           </Link>
           <Link
             to="/auth"
-            className="rounded-xl px-6 py-3 text-base font-semibold hover:bg-accent"
+            className="rounded-xl border border-border/60 bg-white/60 px-6 py-3 text-base font-semibold backdrop-blur transition hover:bg-white"
           >
             I already have an account
           </Link>
@@ -64,9 +64,9 @@ function Landing() {
           ].map(({ icon: Icon, title, text }) => (
             <div
               key={title}
-              className="rounded-2xl border border-border/60 bg-card p-6 shadow-card"
+              className="hover-lift rounded-2xl border border-border/60 bg-card p-6 shadow-card"
             >
-              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary-soft text-primary">
+              <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-brand text-white shadow-soft">
                 <Icon className="h-5 w-5" />
               </div>
               <h3 className="mt-4 text-lg font-semibold">{title}</h3>
@@ -85,8 +85,8 @@ function Landing() {
             ["2", "AI does the matching", "We analyse your profile against careers, colleges, and scholarships."],
             ["3", "Get your roadmap", "A clean dashboard with everything you need to plan after 12th."],
           ].map(([n, t, d]) => (
-            <div key={n} className="rounded-2xl border border-border/60 bg-card p-6">
-              <div className="font-display text-4xl font-bold text-primary">{n}</div>
+            <div key={n} className="hover-lift rounded-2xl border border-border/60 bg-card p-6">
+              <div className="font-display text-4xl font-bold text-gradient-brand">{n}</div>
               <h3 className="mt-3 text-lg font-semibold">{t}</h3>
               <p className="mt-1 text-sm text-muted-foreground">{d}</p>
             </div>
@@ -96,7 +96,7 @@ function Landing() {
           <Link
             to="/auth"
             search={{ mode: "signup" }}
-            className="inline-flex items-center gap-2 rounded-xl bg-primary px-6 py-3 text-base font-semibold text-primary-foreground shadow-soft hover:opacity-90"
+            className="inline-flex items-center gap-2 rounded-xl bg-gradient-brand px-6 py-3 text-base font-semibold text-white shadow-soft transition hover:-translate-y-0.5 hover:shadow-glow"
           >
             Start free <ArrowRight className="h-4 w-4" />
           </Link>
