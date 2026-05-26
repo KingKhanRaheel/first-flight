@@ -4,6 +4,16 @@
 
 [build.environment]
   NODE_VERSION = "20.19.0"
+  # Public Supabase values — safe to commit. The SSR Netlify Function reads
+  # these via process.env at runtime; without them, server functions throw
+  # "Missing Supabase environment variable(s)".
+  SUPABASE_URL = "https://oybrhcmicyipkthzcxau.supabase.co"
+  SUPABASE_PUBLISHABLE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im95YnJoY21pY3lpcGt0aHpjeGF1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzk1NDgzMzgsImV4cCI6MjA5NTEyNDMzOH0.RPlxw3U81dFmIGp9fpwcLpzKTi8yXT_vQ9d1ksqTUgc"
+  VITE_SUPABASE_URL = "https://oybrhcmicyipkthzcxau.supabase.co"
+  VITE_SUPABASE_PUBLISHABLE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im95YnJoY21pY3lpcGt0aHpjeGF1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzk1NDgzMzgsImV4cCI6MjA5NTEyNDMzOH0.RPlxw3U81dFmIGp9fpwcLpzKTi8yXT_vQ9d1ksqTUgc"
+  VITE_SUPABASE_PROJECT_ID = "oybrhcmicyipkthzcxau"
+  # Secrets (SUPABASE_SERVICE_ROLE_KEY, LOVABLE_API_KEY) must be set in
+  # Netlify → Site settings → Environment variables. Never commit them.
 
 [dev]
   command = "npm run dev"
