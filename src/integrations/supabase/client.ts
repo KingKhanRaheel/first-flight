@@ -23,6 +23,10 @@ function createSupabaseClient() {
       storage: typeof window !== 'undefined' ? localStorage : undefined,
       persistSession: true,
       autoRefreshToken: true,
+    },
+    // ADDED THIS BLOCK TO PREVENT NODE 20 WEBSOCKET BUILD ERRORS ON NETLIFY:
+    realtime: {
+      transport: typeof window !== 'undefined' ? undefined : null,
     }
   });
 }
@@ -37,4 +41,3 @@ export const supabase = new Proxy({} as ReturnType<typeof createSupabaseClient>,
     return Reflect.get(_supabase, prop, receiver);
   },
 });
-
