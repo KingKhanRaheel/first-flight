@@ -42,15 +42,31 @@ function Dashboard() {
   useEffect(() => {
     if (!user) return;
     (async () => {
-      const { data: p } = await supabase.from("profiles").select("*").eq("id", user.id).single();
-      setProfile(p);
-      if (!p?.completed_onboarding) {
-        navigate({ to: "/onboarding" });
-        return;
+      try {
+        const { data: p, error: pErr } = await supabase
+          .from("profiles")
+          .select("*")
+          .eq("id", user.id)
+          .single();
+        if (pErr) throw pErr;
+        setProfile(p);
+        if (!p?.completed_onboarding) {
+          navigate({ to: "/onboarding" });
+          return;
+        }
+        try {
+          const r = await fetchRecs();
+          setRecs(r);
+        } catch (e: any) {
+          console.error("Failed to load recommendations", e);
+          toast.error("Couldn't load your roadmap. Hit Refresh to retry.");
+        }
+      } catch (e: any) {
+        console.error("Dashboard bootstrap failed", e);
+        toast.error(e?.message ?? "Failed to load dashboard");
+      } finally {
+        setBootstrapped(true);
       }
-      const r = await fetchRecs();
-      setRecs(r);
-      setBootstrapped(true);
     })();
   }, [user, fetchRecs, navigate]);
 
