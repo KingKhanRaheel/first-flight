@@ -16,7 +16,7 @@ export const Route = createFileRoute("/onboarding")({
   component: Onboarding,
 });
 
-const STATES = ["Andhra Pradesh","Assam","Bihar","Chhattisgarh","Delhi","Gujarat","Haryana","Karnataka","Kerala","Madhya Pradesh","Maharashtra","Odisha","Punjab","Rajasthan","Tamil Nadu","Telangana","Uttar Pradesh","West Bengal","Other"];
+import { INDIA_STATES_UTS as STATES } from "@/lib/india-states";
 
 function Onboarding() {
   const { user, loading } = useAuth();
