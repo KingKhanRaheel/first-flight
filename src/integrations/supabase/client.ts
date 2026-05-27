@@ -1,50 +1,47 @@
+// User-owned Supabase configuration.
+// This project intentionally connects to a self-managed Supabase project
+// instead of Lovable Cloud — do not let auto-regeneration overwrite the
+// URL/key constants below.
 import { createClient } from '@supabase/supabase-js';
 import type { Database } from './types';
 
 function createSupabaseClient() {
-  const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL || process.env.SUPABASE_URL;
-  const SUPABASE_PUBLISHABLE_KEY = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY || process.env.SUPABASE_PUBLISHABLE_KEY;
+  const SUPABASE_URL =
+    import.meta.env.VITE_SUPABASE_URL || (typeof process !== 'undefined' ? process.env.SUPABASE_URL : undefined);
+  const SUPABASE_PUBLISHABLE_KEY =
+    import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY ||
+    (typeof process !== 'undefined' ? process.env.SUPABASE_PUBLISHABLE_KEY : undefined);
 
   if (!SUPABASE_URL || !SUPABASE_PUBLISHABLE_KEY) {
     const missing = [
       ...(!SUPABASE_URL ? ['SUPABASE_URL'] : []),
       ...(!SUPABASE_PUBLISHABLE_KEY ? ['SUPABASE_PUBLISHABLE_KEY'] : []),
     ];
-    const message = `Missing Supabase environment variable(s): ${missing.join(', ')}. Connect Supabase in Lovable Cloud.`;
-    console.error(`[Supabase] ${message}`);
-    throw new Error(message);
+    throw new Error(
+      `Missing Supabase env var(s): ${missing.join(', ')}. Set them in .env (dev) and Netlify env vars (prod).`,
+    );
   }
 
-  // Force the client setup to natively accept a null WebSocket transport when not in browser
   return createClient<Database>(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY, {
     auth: {
       storage: typeof window !== 'undefined' ? localStorage : undefined,
-      persistSession: true,
-      autoRefreshToken: true,
+      persistSession: typeof window !== 'undefined',
+      autoRefreshToken: typeof window !== 'undefined',
     },
-    realtime: {
-      transport: typeof window !== 'undefined' ? undefined : null,
-    },
-    global: {
-      // Disables global fetch checks during Node.js compilation cycles
-      fetch: typeof window !== 'undefined' ? window.fetch : undefined,
-    }
   });
 }
 
 let _supabase: ReturnType<typeof createSupabaseClient> | undefined;
 
-// The Proxy completely blocks execution if Node.js touches it during the Netlify build
+// Browser-only client. On the server (SSR/build) any property access returns a
+// safe no-op so importing this file never crashes during prerender.
 export const supabase = new Proxy({} as ReturnType<typeof createSupabaseClient>, {
-  get(target, prop, receiver) {
+  get(_, prop, receiver) {
     if (typeof window === 'undefined') {
-      // If server or Netlify build touches this, give it an empty mock object
-      return () => {};
+      // No-op stub during SSR / build prerender.
+      return () => undefined;
     }
-    
-    if (!_supabase) {
-      _supabase = createSupabaseClient();
-    }
+    if (!_supabase) _supabase = createSupabaseClient();
     return Reflect.get(_supabase, prop, receiver);
   },
 });
